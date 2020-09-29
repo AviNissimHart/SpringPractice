@@ -25,40 +25,41 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Guitarist {
-	
-	// organise imports with CTRL + shift + O
-	
-	@Id // primary key
-	@GeneratedValue // auto-increment
-	private long id;
-	
-	@Column(name = "guitarist_name", unique = true)
-	@NotNull
-	@Size(min = 1, max = 120) // varchar(20)
-	private String name;
-	
-	@Column(name = "strings")
-	@Min(4)
-	@Max(12)
-	private int noOfStrings;
-	
-	@Column(name = "type")
-	@NotNull
-	@Size(min = 1, max = 120)
-	private String type;
-	
-	@ManyToOne(targetEntity = Band.class)
-	private Band band;
 
-	// generate code using SHIFT + ALT + S
-	public Guitarist(long id, @NotNull @Size(min = 1, max = 120) String name, @Min(4) @Max(12) int noOfStrings,
-			@NotNull @Size(min = 1, max = 120) String type) {
-		super();
-		this.name = name;
-		this.noOfStrings = noOfStrings;
-		this.type = type;
+    // organise imports with CTRL + SHIFT + O
+
+    @Id // Primary Key
+    @GeneratedValue // Auto-increment
+    private long id;
+
+    @Column(name = "guitarist_name", unique = true)
+    @NotNull
+    @Size(min = 1, max = 120) // varchar(20)
+    private String name;
+
+    @Column(name = "strings")
+    @Min(4)
+    @Max(12)
+    private int noOfStrings;
+
+    @Column(name = "type")
+    @NotNull
+    @Size(min = 1, max = 120)
+    private String type;
+
+    @ManyToOne(targetEntity = Band.class)
+    private Band band;
+
+    // generate code using SHIFT + ALT + S
+    public Guitarist(@NotNull @Size(min = 1, max = 120) String name, @Min(4) @Max(12) int noOfStrings,
+            @NotNull @Size(min = 1, max = 120) String type) {
+        super();
+        this.name = name;
+        this.noOfStrings = noOfStrings;
+        this.type = type;
+    }
+    public Guitarist() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

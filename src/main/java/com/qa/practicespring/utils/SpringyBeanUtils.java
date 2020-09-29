@@ -22,8 +22,9 @@ public class SpringyBeanUtils {
 
         Set<String> propertyNames = new HashSet<>();
         for (PropertyDescriptor propertyDescriptors : wrappedSourceObject.getPropertyDescriptors()) {
-            if (wrappedSourceObject.getPropertyValue(propertyDescriptors.getName()) == null)
+            if (wrappedSourceObject.getPropertyValue(propertyDescriptors.getName()) == null) {
                 propertyNames.add(propertyDescriptors.getName());
+            }
         }
         return propertyNames.toArray(new String[propertyNames.size()]);
     }
