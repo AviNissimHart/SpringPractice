@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-@Getter(lazy = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Setter
 @ToString
 @EqualsAndHashCode

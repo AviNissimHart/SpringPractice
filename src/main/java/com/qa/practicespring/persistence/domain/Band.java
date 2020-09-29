@@ -19,9 +19,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-@Getter(lazy = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Setter
 @ToString
 @EqualsAndHashCode

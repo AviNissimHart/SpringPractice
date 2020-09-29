@@ -10,9 +10,9 @@ import lombok.ToString;
 
 // converting our POJO (Guitarist entity) to JSON (to view in the front-end)
 
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-@Getter(lazy = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Setter
 @ToString
 @EqualsAndHashCode
