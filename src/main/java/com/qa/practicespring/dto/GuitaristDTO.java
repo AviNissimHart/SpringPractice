@@ -8,12 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// converting our POJO (Guitarist entity) to JSON (to view in the front-end)
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 @ToString
 @EqualsAndHashCode
 public class GuitaristDTO {
@@ -24,7 +22,7 @@ public class GuitaristDTO {
 
     private Long id;
     private String name;
-    private Integer noOfStrings;
+    private Integer strings;
     private String type;
 
 }

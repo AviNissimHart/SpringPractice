@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.practicespring.dto.BandDTO;
+import com.qa.practicespring.persistence.domain.Band;
 import com.qa.practicespring.service.BandService;
 
 @RestController
@@ -30,30 +31,28 @@ public class BandController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<BandDTO> create(@RequestBody BandDTO bandDTO) {
-        BandDTO created = this.service.createBand(bandDTO);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    public ResponseEntity<BandDTO> create(@RequestBody Band band) {
+        return new ResponseEntity<>(this.service.create(band), HttpStatus.CREATED);
     }
 
-    @GetMapping("/readAll")
+    @GetMapping("/read")
     public ResponseEntity<List<BandDTO>> getAllBands() {
-        return ResponseEntity.ok(this.service.getAllBands());
+        return ResponseEntity.ok(this.service.read());
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<BandDTO> getBandById(@PathVariable Long id) {
-        return ResponseEntity.ok(this.service.getBandById(id));
+        return ResponseEntity.ok(this.service.read(id));
     }
 
-    @PutMapping("update/{id}")
-    public ResponseEntity<BandDTO> updateBandById(@PathVariable Long id, @RequestBody BandDTO bandDTO) {
-        BandDTO updated = this.service.updateBandById(bandDTO, id);
-        return new ResponseEntity<>(updated, HttpStatus.ACCEPTED);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<BandDTO> updateBand(@PathVariable Long id, @RequestBody BandDTO bandDTO) {
+        return new ResponseEntity<>(this.service.update(bandDTO, id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<BandDTO> deleteBandById(@PathVariable Long id) {
-        return this.service.deleteBandById(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+        return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

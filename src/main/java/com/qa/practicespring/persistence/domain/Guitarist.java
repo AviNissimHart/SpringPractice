@@ -1,55 +1,52 @@
 package com.qa.practicespring.persistence.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 public class Guitarist {
 
-    // organise imports with CTRL + SHIFT + O
-
     @Id // Primary Key
-    @GeneratedValue // Auto-increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "guitarist_name", unique = true)
-    @Size(min = 1, max = 120) // varchar(20)
-    @NonNull
+    @NotNull
+    @Size(min = 0, max = 55)
     private String name;
 
-    @Column(name = "number_of_strings")
-    @NonNull
     @Min(4)
     @Max(12)
-    private Integer noOfStrings;
+    private Integer strings;
 
-    @Column(name = "guitar_type")
-    @NonNull
-    @Size(min = 1, max = 120)
+    @NotNull
     private String type;
 
-    @ManyToOne(targetEntity = Band.class)
+    @ManyToOne
     private Band band;
+
+    public Guitarist(String name, Integer strings, String type) {
+        super();
+        this.name = name;
+        this.strings = strings;
+        this.type = type;
+    }
 
 }

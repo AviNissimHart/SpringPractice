@@ -1,17 +1,13 @@
 package com.qa.practicespring.persistence.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +16,6 @@ import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -28,13 +23,16 @@ import lombok.ToString;
 public class Band {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "band_name", unique = true)
     private String name;
 
-    @OneToMany(targetEntity = Guitarist.class, cascade = CascadeType.ALL)
-    private List<Guitarist> guitarists = new ArrayList<>();
+    @OneToMany(mappedBy = "band")
+    private List<Guitarist> guitarists;
+
+    public Band(String name) {
+        this.name = name;
+    }
 
 }
